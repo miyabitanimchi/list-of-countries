@@ -1,14 +1,20 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import CountriesList from "./components/CountriesList";
+import styled from "styled-components";
+import { defaultTheme } from "./styles/theme";
 
 function App() {
   return (
-    <div className="App">
+    <GlobalStyle theme={defaultTheme}>
       <CountriesList />
-    </div>
+    </GlobalStyle>
   );
 }
 
 export default App;
+
+const GlobalStyle = styled.div`
+  background-color: ${({ theme }) => theme.colors.main};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

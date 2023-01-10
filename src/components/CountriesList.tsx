@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Country from "./Country";
+import styled from "styled-components";
 
 interface CountryInfo {
   name: string;
@@ -13,7 +14,7 @@ const normalizeCountry = (data: any) => {
 
   for (let eachData of data) {
     normalizedData.push({
-      name: eachData.name.official,
+      name: eachData.name.common,
       population: eachData.population,
       flag: eachData.flags.png,
     });
@@ -43,12 +44,18 @@ const CountriesList = () => {
   }
 
   return (
-    <div>
+    <ListContainer>
       {countries.map((countryInfo: CountryInfo) => (
         <Country countryInfo={countryInfo} />
       ))}
-    </div>
+    </ListContainer>
   );
 };
 
 export default CountriesList;
+
+const ListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
