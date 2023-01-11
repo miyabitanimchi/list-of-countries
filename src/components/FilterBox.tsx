@@ -69,6 +69,6 @@ const FilterContainer = styled.div`
   width: 200px;
   padding: 20px;
   position: sticky;
-  top: 0;
+  top: 30px;
   border-radius: 10px;
 `;

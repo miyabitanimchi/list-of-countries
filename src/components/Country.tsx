@@ -11,10 +11,22 @@ const Country = ({ countryInfo }: any) => {
       <ImageWrap>
         <Image imgUrl={countryInfo.flag} />
       </ImageWrap>
-      <div>
-        <h3>{countryInfo.name}</h3>
-        <p>Population: {countryInfo.population}</p>
-      </div>
+      <InfoWrap>
+        <Title>{countryInfo.name}</Title>
+        <DetailWrap>
+          <LeftDetail>
+            <InfoText>Capital: </InfoText>
+            <InfoText>Language: </InfoText>
+            <InfoText>Population: {countryInfo.population}</InfoText>
+          </LeftDetail>
+          <div>
+            <InfoText>land Area: </InfoText>
+            <InfoText>Population Density: </InfoText>
+            <InfoText>Region: </InfoText>
+            <InfoText>Currency: </InfoText>
+          </div>
+        </DetailWrap>
+      </InfoWrap>
     </Card>
   );
 };
@@ -25,7 +37,7 @@ const Card = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 10px;
-  height: 150px;
+  height: 230px;
   padding: 10px;
 `;
 
@@ -49,4 +61,25 @@ const Image = styled.img.attrs<ImageProps>(({ imgUrl }) => ({
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+`;
+
+const InfoWrap = styled.div`
+  flex: 1;
+`;
+
+const Title = styled.h2`
+  margin: 3px 0 10px 0;
+`;
+
+const DetailWrap = styled.div`
+  display: flex;
+  gap: 50px;
+`;
+
+const LeftDetail = styled.div`
+  min-width: 230px;
+`;
+
+const InfoText = styled.p`
+  margin-bottom: 10px;
 `;

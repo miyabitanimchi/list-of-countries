@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import GlobalStyle from "./styles/global";
 import { defaultTheme } from "./styles/theme";
 import CountriesList from "./components/CountriesList";
 import FilterBox from "./components/FilterBox";
@@ -49,19 +50,21 @@ function App() {
         setDisplayedCountries,
       }}
     >
-      <GlobalStyle theme={defaultTheme}>
+      <MainContainer theme={defaultTheme}>
+        <GlobalStyle />
         <CountriesList />
         <FilterBox />
-      </GlobalStyle>
+      </MainContainer>
     </CountriesCtx.Provider>
   );
 }
 
 export default App;
 
-const GlobalStyle = styled.div`
+const MainContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
   display: flex;
   justify-content: center;
   gap: 50px;
+  padding-top: 30px;
 `;

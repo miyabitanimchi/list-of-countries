@@ -14,7 +14,7 @@ const CountriesList = () => {
   return (
     <ListContainer>
       {displayedCountries.map((countryInfo: CountryInfo) => (
-        <Country countryInfo={countryInfo} />
+        <Country countryInfo={countryInfo} key={countryInfo.name} />
       ))}
     </ListContainer>
   );
