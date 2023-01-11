@@ -8,12 +8,13 @@ import { Cross } from "@styled-icons/entypo";
 import { Search } from "@styled-icons/evaicons-solid";
 import axios from "axios";
 
+const SORT_BY = "Sort by";
 const MOST_POPULATED = "Most Populated";
 const LEAST_POPULATED = "Least Populated";
 const ALPHABETICAL_ORDER = "Alphabetical Order";
 
 const SORT_OPTIONS: readonly string[] = [
-  "Sort by",
+  SORT_BY,
   MOST_POPULATED,
   LEAST_POPULATED,
   ALPHABETICAL_ORDER,
@@ -37,21 +38,28 @@ const sortCountriesList = (
 };
 
 const FilterBox = () => {
-  const { displayedCountries, setDisplayedCountries } =
+  const { allCountries, displayedCountries, setDisplayedCountries } =
     useContext(CountriesCtx);
   const [searchText, setSearchText] = useState<string>("");
+  const [selectedFilter, setSelectedFilter] = useState<string>(SORT_BY);
 
   const handleFilterOption = (
     e: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    console.log(sortCountriesList(e.target.value, displayedCountries));
     setDisplayedCountries(
       sortCountriesList(e.target.value, displayedCountries)
     );
+    setSelectedFilter(e.target.value);
   };
 
   const onResetSearchText = (): void => {
     setSearchText("");
+  };
+
+  const onResetFilter = (): void => {
+    setSearchText("");
+    setDisplayedCountries(allCountries);
+    setSelectedFilter(SORT_BY);
   };
 
   const onSearchCountry = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -62,6 +70,7 @@ const FilterBox = () => {
       );
       const countriesData = normalizeCountry(response.data);
       setDisplayedCountries(countriesData);
+      setSelectedFilter(SORT_BY);
     } catch (error) {}
   };
 
@@ -82,12 +91,16 @@ const FilterBox = () => {
       </SearchWrap>
       <select name="" id="" onChange={handleFilterOption}>
         {SORT_OPTIONS.map((sortOption) => (
-          <option key={sortOption} value={sortOption}>
+          <option
+            key={sortOption}
+            value={sortOption}
+            selected={selectedFilter === sortOption}
+          >
             {sortOption}
           </option>
         ))}
       </select>
-      <button>Reset</button>
+      <ResetButton onClick={onResetFilter}>Reset Filter</ResetButton>
     </FilterContainer>
   );
 };
@@ -138,4 +151,15 @@ const SearchWrap = styled.div`
     padding: 5px 0;
     border: 1px solid lightgray;
   }
+`;
+
+const ResetButton = styled.button`
+  margin-left: auto;
+  border-radius: 5px;
+  width: 100px;
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid #04d1ae;
+  background-color: #05fad0;
+  margin-top: 5px;
 `;
