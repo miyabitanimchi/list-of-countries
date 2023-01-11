@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import Country from "./Country";
 import styled from "styled-components";
+import CountriesCtx from "../contexts/countriesContext";
 
 interface CountryInfo {
   name: string;
@@ -9,43 +10,16 @@ interface CountryInfo {
   flag: string;
 }
 
-const normalizeCountry = (data: any) => {
-  const normalizedData = [];
-
-  for (let eachData of data) {
-    normalizedData.push({
-      name: eachData.name.common,
-      population: eachData.population,
-      flag: eachData.flags.png,
-    });
-  }
-  return normalizedData;
-};
-
 const CountriesList = () => {
-  const [countries, setCountries] = useState<CountryInfo[]>([]);
+  const { displayedCountries } = useContext(CountriesCtx);
 
-  const getCountries = async () => {
-    try {
-      const response: any = await axios.get(
-        "https://restcountries.com/v3.1/all"
-      );
-      console.log(response.data);
-      setCountries(normalizeCountry(response.data));
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    getCountries();
-  }, []);
-
-  if (!countries.length) {
+  if (!displayedCountries.length) {
     return <div>Loading...</div>;
   }
 
   return (
     <ListContainer>
-      {countries.map((countryInfo: CountryInfo) => (
+      {displayedCountries.map((countryInfo: CountryInfo) => (
         <Country countryInfo={countryInfo} />
       ))}
     </ListContainer>

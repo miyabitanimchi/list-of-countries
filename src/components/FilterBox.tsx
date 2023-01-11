@@ -18,7 +18,9 @@ const FilterBox = () => {
       <input type="text" placeholder="Search by country name" />
       <select name="" id="">
         {SORT_OPTIONS.map((sortOption) => (
-          <option value={sortOption}>{sortOption}</option>
+          <option key={sortOption} value={sortOption}>
+            {sortOption}
+          </option>
         ))}
       </select>
     </FilterContainer>
