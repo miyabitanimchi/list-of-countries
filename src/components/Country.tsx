@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import CountriesCtx from "../contexts/countriesContext";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import { CountryInfo } from "../types";
@@ -16,6 +18,8 @@ const Country = ({
   languages,
   region,
 }: CountryInfo) => {
+  const { selectedFilter, setSelectedFilter } = useContext(CountriesCtx);
+
   return (
     <Card key={name} theme={defaultTheme}>
       <ImageWrap>

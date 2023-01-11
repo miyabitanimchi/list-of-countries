@@ -6,6 +6,7 @@ import CountriesList from "./components/CountriesList";
 import FilterBox from "./components/FilterBox";
 import CountriesCtx from "./contexts/countriesContext";
 import axios from "axios";
+import { SORT_BY } from "./constants";
 import { CountryInfo } from "./types";
 import { normalizeCountry } from "./utils/index";
 
@@ -14,6 +15,7 @@ function App() {
   const [displayedCountries, setDisplayedCountries] = useState<CountryInfo[]>(
     []
   );
+  const [selectedFilter, setSelectedFilter] = useState<string>(SORT_BY);
 
   const getCountries = async () => {
     try {
@@ -35,6 +37,8 @@ function App() {
       value={{
         allCountries,
         displayedCountries,
+        selectedFilter,
+        setSelectedFilter,
         setDisplayedCountries,
       }}
     >

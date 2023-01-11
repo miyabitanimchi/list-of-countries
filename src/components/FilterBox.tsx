@@ -2,16 +2,17 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import CountriesCtx from "../contexts/countriesContext";
+import {
+  SORT_BY,
+  MOST_POPULATED,
+  LEAST_POPULATED,
+  ALPHABETICAL_ORDER,
+} from "../constants";
 import { CountryInfo } from "../types";
 import { normalizeCountry } from "../utils";
 import { Cross } from "@styled-icons/entypo";
 import { Search } from "@styled-icons/evaicons-solid";
 import axios from "axios";
-
-const SORT_BY = "Sort by";
-const MOST_POPULATED = "Most Populated";
-const LEAST_POPULATED = "Least Populated";
-const ALPHABETICAL_ORDER = "Alphabetical Order";
 
 const SORT_OPTIONS: readonly string[] = [
   SORT_BY,
@@ -40,10 +41,14 @@ const sortCountriesList = (
 };
 
 const FilterBox = () => {
-  const { allCountries, displayedCountries, setDisplayedCountries } =
-    useContext(CountriesCtx);
+  const {
+    allCountries,
+    displayedCountries,
+    selectedFilter,
+    setDisplayedCountries,
+    setSelectedFilter,
+  } = useContext(CountriesCtx);
   const [searchText, setSearchText] = useState<string>("");
-  const [selectedFilter, setSelectedFilter] = useState<string>(SORT_BY);
 
   const handleFilterOption = (
     e: React.ChangeEvent<HTMLSelectElement>
