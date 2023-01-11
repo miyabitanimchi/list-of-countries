@@ -1,8 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import CountriesCtx from "../contexts/countriesContext";
 import { CountryInfo } from "../types";
+import { Cross } from "@styled-icons/entypo";
+import { Search } from "@styled-icons/evaicons-solid";
 
 const MOST_POPULATED = "Most Populated";
 const LEAST_POPULATED = "Least Populated";
@@ -35,6 +37,7 @@ const sortCountriesList = (
 const FilterBox = () => {
   const { displayedCountries, setDisplayedCountries } =
     useContext(CountriesCtx);
+  const [searchText, setSearchText] = useState<string>("");
 
   const handleFilterOption = (
     e: React.ChangeEvent<HTMLSelectElement>
@@ -45,9 +48,24 @@ const FilterBox = () => {
     );
   };
 
+  const onResetSearchText = (): void => {
+    setSearchText("");
+  };
+
   return (
     <FilterContainer theme={defaultTheme}>
-      <input type="text" placeholder="Search by country name" />
+      <SearchWrap>
+        <input
+          type="text"
+          placeholder="Search by country name"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+        <Search className="searchIcon" />
+        {searchText !== "" && (
+          <Cross className="crossIcon" onClick={onResetSearchText} />
+        )}
+      </SearchWrap>
       <select name="" id="" onChange={handleFilterOption}>
         {SORT_OPTIONS.map((sortOption) => (
           <option key={sortOption} value={sortOption}>
@@ -55,6 +73,7 @@ const FilterBox = () => {
           </option>
         ))}
       </select>
+      <button>Reset</button>
     </FilterContainer>
   );
 };
@@ -64,11 +83,45 @@ export default FilterBox;
 const FilterContainer = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
   background-color: ${({ theme }) => theme.colors.secondary};
   height: fit-content;
-  width: 200px;
-  padding: 20px;
+  width: 300px;
+  padding: 25px;
   position: sticky;
   top: 30px;
   border-radius: 10px;
+`;
+
+const SearchWrap = styled.div`
+  position: relative;
+  input {
+    border-radius: 5px;
+    padding: 5px 10px 5px 30px;
+    border: 1px solid lightgray;
+    width: 100%;
+    font-size: 16px;
+  }
+  svg {
+    position: absolute;
+    top: 6px;
+    color: gray;
+  }
+
+  .searchIcon {
+    left: 5px;
+    width: 20px;
+  }
+
+  .crossIcon {
+    width: 23px;
+    right: 2px;
+    cursor: pointer;
+  }
+
+  + select {
+    border-radius: 5px;
+    padding: 5px 0;
+    border: 1px solid lightgray;
+  }
 `;
