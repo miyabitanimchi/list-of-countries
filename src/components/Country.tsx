@@ -34,9 +34,9 @@ const Country = ({
                   {languages.names.length > 1 &&
                     index !== languages.names.length - 1 &&
                     ", "}
-                  {languages.names.length < languages.totalNum && " and more"}
                 </span>
               ))}
+              {languages.names.length < languages.totalNum && " and more"}
             </InfoText>
             <InfoText>Population: {population}</InfoText>
           </LeftDetail>
