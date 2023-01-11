@@ -36,8 +36,9 @@ function App() {
       const response: any = await axios.get(
         "https://restcountries.com/v3.1/all"
       );
-      console.log(response.data);
-      setAllCountries(normalizeCountry(response.data));
+      const countriesData = normalizeCountry(response.data);
+      setAllCountries(countriesData);
+      setDisplayedCountries(countriesData);
     } catch (error) {}
   };
 
@@ -49,7 +50,7 @@ function App() {
     <CountriesCtx.Provider
       value={{
         allCountries,
-        displayedCountries: allCountries,
+        displayedCountries,
         setDisplayedCountries,
       }}
     >
