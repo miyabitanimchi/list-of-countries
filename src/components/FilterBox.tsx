@@ -32,6 +32,8 @@ const sortCountriesList = (
       return countriesCopies.sort((a, b) => a.population - b.population);
     case ALPHABETICAL_ORDER:
       return countriesCopies.sort((a, b) => a.name.localeCompare(b.name));
+    case SORT_BY:
+      return countriesCopies;
     default:
       return countriesCopies;
   }
@@ -46,9 +48,13 @@ const FilterBox = () => {
   const handleFilterOption = (
     e: React.ChangeEvent<HTMLSelectElement>
   ): void => {
-    setDisplayedCountries(
-      sortCountriesList(e.target.value, displayedCountries)
-    );
+    if (e.target.value === SORT_BY) {
+      setDisplayedCountries(allCountries);
+    } else {
+      setDisplayedCountries(
+        sortCountriesList(e.target.value, displayedCountries)
+      );
+    }
     setSelectedFilter(e.target.value);
   };
 
