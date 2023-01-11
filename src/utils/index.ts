@@ -13,7 +13,7 @@ export const normalizeCountry = (data: any): CountryInfo[] => {
         names: languages.slice(0, 3),
         totalNum: languages.length,
       },
-      capital: d.capital,
+      capital: d.capital || ["-"],
       landArea: d.area,
       region: d.region,
     });

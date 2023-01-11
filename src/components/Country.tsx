@@ -27,9 +27,9 @@ const Country = ({
           <LeftDetail>
             <InfoText>
               Capital:{" "}
-              {capital.map((language: string, index: number) => (
-                <span>
-                  {language}
+              {capital.map((capital: string, index: number) => (
+                <span key={capital}>
+                  {capital}
                   {capital.length > 1 && index !== capital.length - 1 && ", "}
                 </span>
               ))}
@@ -37,7 +37,7 @@ const Country = ({
             <InfoText>
               Language:{" "}
               {languages.names.map((language: string, index: number) => (
-                <span>
+                <span key={index}>
                   {language}
                   {languages.names.length > 1 &&
                     index !== languages.names.length - 1 &&
