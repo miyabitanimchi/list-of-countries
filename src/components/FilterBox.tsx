@@ -25,8 +25,8 @@ const sortCountriesList = (
       return countriesCopies.sort((a, b) => b.population - a.population);
     case LEAST_POPULATED:
       return countriesCopies.sort((a, b) => a.population - b.population);
-    // case ALPHABETICAL_ORDER:
-    //   return countriesCopies.sort((a, b) => a.name - b.name);
+    case ALPHABETICAL_ORDER:
+      return countriesCopies.sort((a, b) => a.name.localeCompare(b.name));
     default:
       return countriesCopies;
   }
