@@ -1,29 +1,49 @@
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
+import { CountryInfo } from "../types";
 
 interface ImageProps {
   imgUrl: string;
 }
 
-const Country = ({ countryInfo }: any) => {
+const Country = ({
+  name,
+  flag,
+  capital,
+  population,
+  landArea,
+  populationDentisity,
+  languages,
+  region,
+}: CountryInfo) => {
   return (
-    <Card key={countryInfo.name} theme={defaultTheme}>
+    <Card key={name} theme={defaultTheme}>
       <ImageWrap>
-        <Image imgUrl={countryInfo.flag} />
+        <Image imgUrl={flag} />
       </ImageWrap>
       <InfoWrap>
-        <Title>{countryInfo.name}</Title>
+        <Title>{name}</Title>
         <DetailWrap>
           <LeftDetail>
-            <InfoText>Capital: </InfoText>
-            <InfoText>Language: </InfoText>
-            <InfoText>Population: {countryInfo.population}</InfoText>
+            <InfoText>Capital: {capital}</InfoText>
+            <InfoText>
+              Language:{" "}
+              {languages.names.map((language: string, index: number) => (
+                <span>
+                  {language}
+                  {languages.names.length > 1 &&
+                    index !== languages.names.length - 1 &&
+                    ", "}
+                  {languages.names.length < languages.totalNum && " and more"}
+                </span>
+              ))}
+            </InfoText>
+            <InfoText>Population: {population}</InfoText>
           </LeftDetail>
           <div>
-            <InfoText>land Area: </InfoText>
-            <InfoText>Population Density: </InfoText>
-            <InfoText>Region: </InfoText>
-            <InfoText>Currency: </InfoText>
+            <InfoText>land Area: {landArea}</InfoText>
+            <InfoText>Population Density: {populationDentisity}</InfoText>
+            <InfoText>Region: {region}</InfoText>
           </div>
         </DetailWrap>
       </InfoWrap>
@@ -77,7 +97,7 @@ const DetailWrap = styled.div`
 `;
 
 const LeftDetail = styled.div`
-  min-width: 230px;
+  width: 250px;
 `;
 
 const InfoText = styled.p`

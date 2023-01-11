@@ -1,5 +1,10 @@
 export interface CountryInfo {
   name: string;
-  population: number;
   flag: string;
+  population: number;
+  populationDentisity: number;
+  languages: any;
+  capital: string;
+  landArea: number;
+  region: string;
 }
