@@ -25,7 +25,15 @@ const Country = ({
         <Title>{name}</Title>
         <DetailWrap>
           <LeftDetail>
-            <InfoText>Capital: {capital}</InfoText>
+            <InfoText>
+              Capital:{" "}
+              {capital.map((language: string, index: number) => (
+                <span>
+                  {language}
+                  {capital.length > 1 && index !== capital.length - 1 && ", "}
+                </span>
+              ))}
+            </InfoText>
             <InfoText>
               Language:{" "}
               {languages.names.map((language: string, index: number) => (
