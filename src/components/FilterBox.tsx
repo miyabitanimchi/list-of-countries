@@ -3,8 +3,10 @@ import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import CountriesCtx from "../contexts/countriesContext";
 import { CountryInfo } from "../types";
+import { normalizeCountry } from "../utils";
 import { Cross } from "@styled-icons/entypo";
 import { Search } from "@styled-icons/evaicons-solid";
+import axios from "axios";
 
 const MOST_POPULATED = "Most Populated";
 const LEAST_POPULATED = "Least Populated";
@@ -52,6 +54,17 @@ const FilterBox = () => {
     setSearchText("");
   };
 
+  const onSearchCountry = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key !== "Enter") return;
+    try {
+      const response: any = await axios.get(
+        `https://restcountries.com/v3.1/name/${searchText}`
+      );
+      const countriesData = normalizeCountry(response.data);
+      setDisplayedCountries(countriesData);
+    } catch (error) {}
+  };
+
   return (
     <FilterContainer theme={defaultTheme}>
       <SearchWrap>
@@ -60,6 +73,7 @@ const FilterBox = () => {
           placeholder="Search by country name"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyPress={onSearchCountry}
         />
         <Search className="searchIcon" />
         {searchText !== "" && (

@@ -1,7 +1,7 @@
 import { useContext } from "react";
+import CountriesCtx from "../contexts/countriesContext";
 import Country from "./Country";
 import styled from "styled-components";
-import CountriesCtx from "../contexts/countriesContext";
 import { CountryInfo } from "../types";
 
 const CountriesList = () => {
