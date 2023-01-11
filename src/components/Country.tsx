@@ -46,11 +46,18 @@ const Country = ({
               ))}
               {languages.names.length < languages.totalNum && " and more"}
             </InfoText>
-            <InfoText>Population: {population}</InfoText>
+            <InfoText>
+              Population: {population.toLocaleString("en-US")}
+            </InfoText>
           </LeftDetail>
           <div>
-            <InfoText>land Area: {landArea}</InfoText>
-            <InfoText>Population Density: {populationDentisity}</InfoText>
+            <InfoText>
+              land Area: {landArea.toLocaleString("en-US")} km²
+            </InfoText>
+            <InfoText>
+              Population Density:{" "}
+              {Math.round(populationDentisity).toLocaleString("en-US")} / km²
+            </InfoText>
             <InfoText>Region: {region}</InfoText>
           </div>
         </DetailWrap>
