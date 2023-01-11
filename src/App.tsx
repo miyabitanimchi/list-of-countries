@@ -5,12 +5,7 @@ import CountriesList from "./components/CountriesList";
 import FilterBox from "./components/FilterBox";
 import CountriesCtx from "./contexts/countriesContext";
 import axios from "axios";
-
-interface CountryInfo {
-  name: string;
-  population: number;
-  flag: string;
-}
+import { CountryInfo } from "./types";
 
 const normalizeCountry = (data: any): CountryInfo[] => {
   const normalizedData = [];

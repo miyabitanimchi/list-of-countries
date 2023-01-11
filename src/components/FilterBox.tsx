@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import CountriesCtx from "../contexts/countriesContext";
+import { CountryInfo } from "../types";
 
 const MOST_POPULATED = "Most Populated";
 const LEAST_POPULATED = "Least Populated";
@@ -14,13 +15,10 @@ const SORT_OPTIONS: readonly string[] = [
   ALPHABETICAL_ORDER,
 ];
 
-interface CountryInfo {
-  name: string;
-  population: number;
-  flag: string;
-}
-
-const sortCountriesList = (sortOption: string, countries: CountryInfo[]) => {
+const sortCountriesList = (
+  sortOption: string,
+  countries: CountryInfo[]
+): CountryInfo[] => {
   const countriesCopies = [...countries];
   switch (sortOption) {
     case MOST_POPULATED:

@@ -1,14 +1,8 @@
 import { useContext } from "react";
-import axios from "axios";
 import Country from "./Country";
 import styled from "styled-components";
 import CountriesCtx from "../contexts/countriesContext";
-
-interface CountryInfo {
-  name: string;
-  population: number;
-  flag: string;
-}
+import { CountryInfo } from "../types";
 
 const CountriesList = () => {
   const { displayedCountries } = useContext(CountriesCtx);

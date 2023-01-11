@@ -1,11 +1,5 @@
-import { createContext, useState, useEffect } from "react";
-
-interface CountryInfo {
-  name: string;
-  population: number;
-  flag: string;
-}
-
+import { createContext } from "react";
+import { CountryInfo } from "../types";
 interface CountriesContext {
   allCountries: CountryInfo[];
   displayedCountries: CountryInfo[];
