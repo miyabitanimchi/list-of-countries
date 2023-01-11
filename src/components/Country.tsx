@@ -51,6 +51,7 @@ const Country = ({
             </InfoText>
           </LeftDetail>
           <div>
+            <InfoText>Region: {region}</InfoText>
             <InfoText>
               land Area: {landArea.toLocaleString("en-US")} km²
             </InfoText>
@@ -58,7 +59,6 @@ const Country = ({
               Population Density:{" "}
               {Math.round(populationDentisity).toLocaleString("en-US")} / km²
             </InfoText>
-            <InfoText>Region: {region}</InfoText>
           </div>
         </DetailWrap>
       </InfoWrap>
@@ -103,7 +103,7 @@ const InfoWrap = styled.div`
 `;
 
 const Title = styled.h2`
-  margin: 3px 0 10px 0;
+  margin: 3px 0 15px 0;
 `;
 
 const DetailWrap = styled.div`
