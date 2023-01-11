@@ -4,7 +4,7 @@ export interface CountryInfo {
   population: number;
   populationDentisity: number;
   languages: any;
-  capital: string[];
+  capitals: string[];
   landArea: number;
   region: string;
 }

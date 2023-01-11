@@ -9,7 +9,7 @@ interface ImageProps {
 const Country = ({
   name,
   flag,
-  capital,
+  capitals,
   population,
   landArea,
   populationDentisity,
@@ -27,10 +27,10 @@ const Country = ({
           <LeftDetail>
             <InfoText>
               Capital:{" "}
-              {capital.map((capital: string, index: number) => (
+              {capitals.map((capital: string, index: number) => (
                 <span key={capital}>
                   {capital}
-                  {capital.length > 1 && index !== capital.length - 1 && ", "}
+                  {capitals.length > 1 && index !== capitals.length - 1 && ", "}
                 </span>
               ))}
             </InfoText>
