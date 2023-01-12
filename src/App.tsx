@@ -66,7 +66,8 @@ const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 50px;
-  padding-top: 30px;
+  padding: 30px;
+  min-height: 100vh;
 `;
 
 const LoadingContainer = styled.div`

@@ -31,7 +31,7 @@ const TemperatureIcon = ({ lat }: LatitudeProps) => {
   if (lat <= 23.26 && lat >= -23.26) {
     return <TemperatureFull className={["tempIcon", "red"].join(" ")} />;
   } else if (lat <= 55 && lat >= -55) {
-    return <TemperatureHalf className={["tempIcon", "yellow"].join(" ")} />;
+    return <TemperatureHalf className={["tempIcon", "orange"].join(" ")} />;
   } else {
     return <TemperatureEmpty className={["tempIcon", "blue"].join(" ")} />;
   }
@@ -165,8 +165,8 @@ const TitleWrap = styled.div<TitleWrapProps>`
     color: red;
   }
 
-  .yellow {
-    color: yellow;
+  .orange {
+    color: orange;
   }
 
   .blue {
