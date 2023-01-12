@@ -72,9 +72,8 @@ const FilterBox = () => {
     if (e.target.value === SORT_BY) {
       setDisplayedCountries(allCountries);
     } else {
-      setDisplayedCountries(
-        sortCountriesList(e.target.value, displayedCountries)
-      );
+      const listToFilter = !searchText ? allCountries : displayedCountries;
+      setDisplayedCountries(sortCountriesList(e.target.value, listToFilter));
     }
     setSelectedFilter(e.target.value);
   };
