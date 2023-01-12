@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { CountriesListCtx } from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesListContext";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import { CountryInfo } from "../types";

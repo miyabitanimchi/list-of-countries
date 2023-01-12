@@ -1,11 +1,18 @@
 import { useContext } from "react";
-import { CountriesListCtx } from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesListContext";
 import { Country } from "./";
 import styled from "styled-components";
 import { CountryInfo } from "../types";
 
 const CountriesList = () => {
-  const { displayedCountries } = useContext(CountriesListCtx);
+  const { displayedCountries, error } = useContext(CountriesListCtx);
+
+  if (error)
+    return (
+      <ListContainer>
+        <ErrorText>{error}</ErrorText>
+      </ListContainer>
+    );
 
   return (
     <ListContainer>
@@ -24,4 +31,10 @@ const ListContainer = styled.div`
   gap: 10px;
   max-width: 900px;
   width: 100%;
+`;
+
+const ErrorText = styled.p`
+  text-align: center;
+  color: red;
+  margin-top: 20px;
 `;

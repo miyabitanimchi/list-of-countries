@@ -1,13 +1,13 @@
 import { useContext } from "react";
-import { CountriesListCtx } from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesListContext";
 import { CountriesList, FilterBox } from "../components";
 import { Info } from "../components";
 import styled from "styled-components";
 
 const CountriesPage = () => {
-  const { displayedCountries } = useContext(CountriesListCtx);
+  const { displayedCountries, error } = useContext(CountriesListCtx);
 
-  if (!displayedCountries.length) {
+  if (!displayedCountries.length && !error) {
     return (
       <LoadingContainer>
         <img src="/loading.svg" alt="Loading..." />

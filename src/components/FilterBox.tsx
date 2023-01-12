@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
-import { CountriesListCtx } from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesListContext";
 import {
   SORT_BY,
   MOST_POPULATED,
@@ -61,8 +61,10 @@ const FilterBox = () => {
     allCountries,
     displayedCountries,
     selectedFilter,
+    error,
     setDisplayedCountries,
     setSelectedFilter,
+    setError,
   } = useContext(CountriesListCtx);
   const [searchText, setSearchText] = useState<string>("");
 
@@ -76,6 +78,7 @@ const FilterBox = () => {
       setDisplayedCountries(sortCountriesList(e.target.value, listToFilter));
     }
     setSelectedFilter(e.target.value);
+    if (error && !searchText) setError("");
   };
 
   const onResetSearchText = (): void => {
@@ -83,6 +86,7 @@ const FilterBox = () => {
   };
 
   const onResetFilter = (): void => {
+    setError("");
     setSearchText("");
     setDisplayedCountries(allCountries);
     setSelectedFilter(SORT_BY);
@@ -97,7 +101,9 @@ const FilterBox = () => {
       const countriesData = normalizeCountry(response.data);
       setDisplayedCountries(countriesData);
       setSelectedFilter(SORT_BY);
-    } catch (error) {}
+    } catch (error) {
+      setError("No Result");
+    }
   };
 
   return (

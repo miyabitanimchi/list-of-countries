@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import GlobalStyle from "./styles/global";
 import { defaultTheme } from "./styles/theme";
-import CountriesListContextProvider from "./contexts/countriesContext";
+import CountriesListContextProvider from "./contexts/countriesListContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CountriesPage from "./pages/CountriesPage";
 import { Header } from "./components";

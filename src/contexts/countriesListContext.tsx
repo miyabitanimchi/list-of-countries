@@ -3,20 +3,25 @@ import { CountryInfo } from "../types";
 import { SORT_BY } from "../constants";
 import { normalizeCountry } from "../utils/index";
 import axios from "axios";
+
 interface CountriesListContext {
   allCountries: CountryInfo[];
   displayedCountries: CountryInfo[];
   selectedFilter: string;
+  error: string;
   setDisplayedCountries: (filteredCountries: CountryInfo[]) => void;
   setSelectedFilter: (selectedFilter: string) => void;
+  setError: (selectedFilter: string) => void;
 }
 
 export const CountriesListCtx = createContext<CountriesListContext>({
   allCountries: [],
   displayedCountries: [],
   selectedFilter: SORT_BY,
+  error: "",
   setSelectedFilter: () => {},
   setDisplayedCountries: () => {},
+  setError: () => {},
 });
 
 const CountriesListContextProvider = ({
@@ -29,6 +34,7 @@ const CountriesListContextProvider = ({
     []
   );
   const [selectedFilter, setSelectedFilter] = useState<string>(SORT_BY);
+  const [error, setError] = useState("");
 
   const getCountries = async () => {
     try {
@@ -38,7 +44,9 @@ const CountriesListContextProvider = ({
       const countriesData = normalizeCountry(response.data);
       setAllCountries(countriesData);
       setDisplayedCountries(countriesData);
-    } catch (error) {}
+    } catch (error) {
+      setError("Unexpected error occured. Please come back again later.");
+    }
   };
 
   useEffect(() => {
@@ -51,8 +59,10 @@ const CountriesListContextProvider = ({
         allCountries,
         displayedCountries,
         selectedFilter,
+        error,
         setSelectedFilter,
         setDisplayedCountries,
+        setError,
       }}
     >
       {children}
