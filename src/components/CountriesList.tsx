@@ -7,10 +7,6 @@ import { CountryInfo } from "../types";
 const CountriesList = () => {
   const { displayedCountries } = useContext(CountriesCtx);
 
-  if (!displayedCountries.length) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <ListContainer>
       {displayedCountries.map((countryInfo: CountryInfo) => (

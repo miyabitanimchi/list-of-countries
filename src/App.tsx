@@ -32,6 +32,14 @@ function App() {
     getCountries();
   }, []);
 
+  if (!displayedCountries.length) {
+    return (
+      <LoadingContainer>
+        <img src="/loading.svg" alt="Loading..." />
+      </LoadingContainer>
+    );
+  }
+
   return (
     <CountriesCtx.Provider
       value={{
@@ -59,4 +67,16 @@ const MainContainer = styled.div`
   justify-content: center;
   gap: 50px;
   padding-top: 30px;
+`;
+
+const LoadingContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    padding-bottom: 30px;
+  }
 `;
