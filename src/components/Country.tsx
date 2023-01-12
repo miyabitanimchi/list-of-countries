@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CountriesCtx from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesContext";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import { CountryInfo } from "../types";
@@ -48,7 +48,7 @@ const Country = ({
   region,
   latitude,
 }: CountryInfo) => {
-  const { selectedFilter, setSelectedFilter } = useContext(CountriesCtx);
+  const { selectedFilter } = useContext(CountriesListCtx);
 
   return (
     <Card key={name} theme={defaultTheme}>

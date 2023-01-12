@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
-import CountriesCtx from "../contexts/countriesContext";
+import { CountriesListCtx } from "../contexts/countriesContext";
 import {
   SORT_BY,
   MOST_POPULATED,
@@ -63,7 +63,7 @@ const FilterBox = () => {
     selectedFilter,
     setDisplayedCountries,
     setSelectedFilter,
-  } = useContext(CountriesCtx);
+  } = useContext(CountriesListCtx);
   const [searchText, setSearchText] = useState<string>("");
 
   const handleFilterOption = (
