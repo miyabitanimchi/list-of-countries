@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { CountriesListCtx } from "../contexts/countriesContext";
-import Country from "./Country";
+import { Country } from "./";
 import styled from "styled-components";
 import { CountryInfo } from "../types";
 

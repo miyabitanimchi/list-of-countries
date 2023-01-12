@@ -1,8 +1,7 @@
 import { useContext } from "react";
 import { CountriesListCtx } from "../contexts/countriesContext";
-import CountriesList from "../components/CountriesList";
-import FilterBox from "../components/FilterBox";
-import Info from "../components/Info";
+import { CountriesList, FilterBox } from "../components";
+import { Info } from "../components";
 import styled from "styled-components";
 
 const CountriesPage = () => {

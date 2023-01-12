@@ -4,7 +4,7 @@ import { defaultTheme } from "./styles/theme";
 import CountriesListContextProvider from "./contexts/countriesContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CountriesPage from "./pages/CountriesPage";
-import Header from "./components/Header";
+import { Header } from "./components";
 
 function App() {
   return (
