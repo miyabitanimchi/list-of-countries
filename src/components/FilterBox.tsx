@@ -142,8 +142,6 @@ const FilterContainer = styled.div`
   height: fit-content;
   width: 300px;
   padding: 25px;
-  position: sticky;
-  top: 80px;
   border-radius: 10px;
 `;
 
@@ -182,11 +180,12 @@ const SearchWrap = styled.div`
 
 const ResetButton = styled.button`
   margin-left: auto;
+  margin-right: 5px;
   border-radius: 5px;
-  width: 100px;
   font-size: 12px;
   cursor: pointer;
-  border: 1px solid #04d1ae;
-  background-color: #05fad0;
   margin-top: 5px;
+  text-decoration: underline;
+  border: none;
+  background: rgba(255, 255, 255, 0);
 `;

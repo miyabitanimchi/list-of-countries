@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { CountriesListCtx } from "../contexts/countriesContext";
 import CountriesList from "../components/CountriesList";
 import FilterBox from "../components/FilterBox";
+import Info from "../components/Info";
 import styled from "styled-components";
 
 const CountriesPage = () => {
@@ -16,19 +17,31 @@ const CountriesPage = () => {
   }
 
   return (
-    <PageWrapper>
+    <PageContainer>
       <CountriesList />
-      <FilterBox />
-    </PageWrapper>
+      <RightContainer>
+        <FilterBox />
+        <Info />
+      </RightContainer>
+    </PageContainer>
   );
 };
 
 export default CountriesPage;
 
-const PageWrapper = styled.div`
+const PageContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 50px;
+`;
+
+const RightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  gap: 30px;
+  position: sticky;
+  top: 80px;
 `;
 
 const LoadingContainer = styled.div`
