@@ -16,8 +16,12 @@ export const normalizeCountry = (data: any): CountryInfo[] => {
       capitals: d.capital || ["-"],
       landArea: d.area,
       region: d.region,
+      latitude: {
+        lat: d.latlng[0],
+        isNorth: d.latlng[0] > 0,
+      },
     });
   }
-
+  console.log(normalizedData);
   return normalizedData;
 };

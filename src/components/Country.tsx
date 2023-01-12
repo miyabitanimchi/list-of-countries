@@ -3,6 +3,12 @@ import CountriesCtx from "../contexts/countriesContext";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import { CountryInfo } from "../types";
+import { CircleHalfFill } from "@styled-icons/fluentui-system-regular";
+import {
+  TemperatureEmpty,
+  TemperatureHalf,
+  TemperatureFull,
+} from "@styled-icons/fa-solid";
 import { MOST_POPULATED, LEAST_POPULATED } from "../constants";
 
 interface ImageProps {
@@ -13,6 +19,24 @@ interface TextProps {
   textColor: string;
 }
 
+interface TitleWrapProps {
+  earthRotate: string;
+}
+
+interface LatitudeProps {
+  lat: number;
+}
+
+const TemperatureIcon = ({ lat }: LatitudeProps) => {
+  if (lat <= 23.26 && lat >= -23.26) {
+    return <TemperatureFull className={["tempIcon", "red"].join(" ")} />;
+  } else if (lat <= 55 && lat >= -55) {
+    return <TemperatureHalf className={["tempIcon", "yellow"].join(" ")} />;
+  } else {
+    return <TemperatureEmpty className={["tempIcon", "blue"].join(" ")} />;
+  }
+};
+
 const Country = ({
   name,
   flag,
@@ -22,6 +46,7 @@ const Country = ({
   populationDentisity,
   languages,
   region,
+  latitude,
 }: CountryInfo) => {
   const { selectedFilter, setSelectedFilter } = useContext(CountriesCtx);
 
@@ -31,7 +56,13 @@ const Country = ({
         <Image imgUrl={flag} />
       </ImageWrap>
       <InfoWrap>
-        <Title>{name}</Title>
+        <TitleWrap earthRotate={latitude.isNorth ? "180" : "0"}>
+          <Title>{name}</Title>
+          <div>
+            <TemperatureIcon lat={latitude.lat} />
+            <CircleHalfFill className="earthIcon" />
+          </div>
+        </TitleWrap>
         <DetailWrap>
           <LeftDetail>
             <InfoText textColor={"gray"}>
@@ -119,9 +150,37 @@ const InfoWrap = styled.div`
   flex: 1;
 `;
 
-const Title = styled.h2`
+const TitleWrap = styled.div<TitleWrapProps>`
   margin: 3px 0 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .tempIcon {
+    height: 25px;
+    margin-right: 15px;
+  }
+
+  .red {
+    color: red;
+  }
+
+  .yellow {
+    color: yellow;
+  }
+
+  .blue {
+    color: blue;
+  }
+
+  .earthIcon {
+    width: 25px;
+    color: #04d1ae;
+    transform: rotate(${({ earthRotate }) => earthRotate}deg);
+  }
 `;
+
+const Title = styled.h2``;
 
 const DetailWrap = styled.div`
   display: flex;

@@ -7,6 +7,8 @@ import {
   MOST_POPULATED,
   LEAST_POPULATED,
   ALPHABETICAL_ORDER,
+  HIGH_LATITUDE_TO_LOW,
+  LOW_LATITUDE_TO_HIGH,
 } from "../constants";
 import { CountryInfo } from "../types";
 import { normalizeCountry } from "../utils";
@@ -19,6 +21,8 @@ const SORT_OPTIONS: readonly string[] = [
   MOST_POPULATED,
   LEAST_POPULATED,
   ALPHABETICAL_ORDER,
+  HIGH_LATITUDE_TO_LOW,
+  LOW_LATITUDE_TO_HIGH,
 ];
 
 const sortCountriesList = (
@@ -35,6 +39,18 @@ const sortCountriesList = (
       return countriesCopies.sort((a, b) => a.name.localeCompare(b.name));
     case SORT_BY:
       return countriesCopies;
+    case HIGH_LATITUDE_TO_LOW:
+      return countriesCopies.sort(
+        (a, b) =>
+          b.latitude.lat * Math.sign(b.latitude.lat) -
+          a.latitude.lat * Math.sign(a.latitude.lat)
+      );
+    case LOW_LATITUDE_TO_HIGH:
+      return countriesCopies.sort(
+        (a, b) =>
+          a.latitude.lat * Math.sign(a.latitude.lat) -
+          b.latitude.lat * Math.sign(b.latitude.lat)
+      );
     default:
       return countriesCopies;
   }

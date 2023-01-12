@@ -7,4 +7,8 @@ export interface CountryInfo {
   capitals: string[];
   landArea: number;
   region: string;
+  latitude: {
+    lat: number;
+    isNorth: boolean;
+  };
 }
