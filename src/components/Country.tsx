@@ -3,9 +3,14 @@ import CountriesCtx from "../contexts/countriesContext";
 import styled from "styled-components";
 import { defaultTheme } from "../styles/theme";
 import { CountryInfo } from "../types";
+import { MOST_POPULATED, LEAST_POPULATED } from "../constants";
 
 interface ImageProps {
   imgUrl: string;
+}
+
+interface TextProps {
+  textColor: string;
 }
 
 const Country = ({
@@ -29,7 +34,7 @@ const Country = ({
         <Title>{name}</Title>
         <DetailWrap>
           <LeftDetail>
-            <InfoText>
+            <InfoText textColor={"gray"}>
               Capital:{" "}
               {capitals.map((capital: string, index: number) => (
                 <span key={capital}>
@@ -38,7 +43,7 @@ const Country = ({
                 </span>
               ))}
             </InfoText>
-            <InfoText>
+            <InfoText textColor={"gray"}>
               Language:{" "}
               {languages.names.map((language: string, index: number) => (
                 <span key={index}>
@@ -50,16 +55,24 @@ const Country = ({
               ))}
               {languages.names.length < languages.totalNum && " and more"}
             </InfoText>
-            <InfoText>
+            <InfoText
+              textColor={
+                selectedFilter === MOST_POPULATED
+                  ? "red"
+                  : selectedFilter === LEAST_POPULATED
+                  ? "blue"
+                  : "gray"
+              }
+            >
               Population: {population.toLocaleString("en-US")}
             </InfoText>
           </LeftDetail>
           <div>
-            <InfoText>Region: {region}</InfoText>
-            <InfoText>
+            <InfoText textColor={"gray"}>Region: {region}</InfoText>
+            <InfoText textColor={"gray"}>
               land Area: {landArea.toLocaleString("en-US")} km²
             </InfoText>
-            <InfoText>
+            <InfoText textColor={"gray"}>
               Population Density:{" "}
               {Math.round(populationDentisity).toLocaleString("en-US")} / km²
             </InfoText>
@@ -119,6 +132,7 @@ const LeftDetail = styled.div`
   width: 250px;
 `;
 
-const InfoText = styled.p`
+const InfoText = styled.p<TextProps>`
   margin-bottom: 10px;
+  color: ${({ textColor }) => textColor};
 `;
