@@ -1,11 +1,13 @@
 # List of Countries
 
-[View App](https://list-of-countries-psi.vercel.app).
+[View App](https://list-of-countries-psi.vercel.app)
 
 ## How to Run the APP
 
-### `yarn install`
+In the root, run
 
-And then
+`yarn install`
 
-### `yarn start`
+And then run
+
+`yarn start`
