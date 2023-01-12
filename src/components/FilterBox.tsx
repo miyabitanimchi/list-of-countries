@@ -25,6 +25,7 @@ const FilterBox = () => {
   ): void => {
     if (e.target.value === SORT_BY) {
       setDisplayedCountries(allCountries);
+      setSearchText(""); // reset search input as well
     } else {
       const listToFilter = !searchText ? allCountries : displayedCountries;
       setDisplayedCountries(sortCountriesList(e.target.value, listToFilter));
@@ -53,6 +54,7 @@ const FilterBox = () => {
       const countriesData = normalizeCountry(response.data);
       setDisplayedCountries(countriesData);
       setSelectedFilter(SORT_BY);
+      setError("");
     } catch (error) {
       setError("No Result");
     }
