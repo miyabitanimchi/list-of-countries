@@ -74,8 +74,8 @@ const FilterBox = () => {
         )}
       </SearchWrap>
       <select
-        name=""
-        id=""
+        name="filterOption"
+        id="filterOption"
         onChange={handleFilterOption}
         value={selectedFilter}
       >
