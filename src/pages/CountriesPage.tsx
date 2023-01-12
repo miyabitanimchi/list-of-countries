@@ -44,13 +44,12 @@ const RightContainer = styled.div`
 `;
 
 const LoadingContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 110px);
   display: flex;
   justify-content: center;
   align-items: center;
 
   img {
-    padding-bottom: 150px;
+    padding-bottom: 80px;
   }
 `;
