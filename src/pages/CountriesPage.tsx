@@ -16,14 +16,20 @@ const CountriesPage = () => {
   }
 
   return (
-    <>
+    <PageWrapper>
       <CountriesList />
       <FilterBox />
-    </>
+    </PageWrapper>
   );
 };
 
 export default CountriesPage;
+
+const PageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+`;
 
 const LoadingContainer = styled.div`
   width: 100vw;
@@ -33,6 +39,6 @@ const LoadingContainer = styled.div`
   align-items: center;
 
   img {
-    padding-bottom: 30px;
+    padding-bottom: 150px;
   }
 `;

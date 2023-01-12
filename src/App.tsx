@@ -4,12 +4,14 @@ import { defaultTheme } from "./styles/theme";
 import CountriesListContextProvider from "./contexts/countriesContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CountriesPage from "./pages/CountriesPage";
+import Header from "./components/Header";
 
 function App() {
   return (
     <CountriesListContextProvider>
+      <GlobalStyle />
+      <Header />
       <MainContainer theme={defaultTheme}>
-        <GlobalStyle />
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<CountriesPage />} />
@@ -24,9 +26,6 @@ export default App;
 
 const MainContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.main};
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  padding: 30px;
+  padding: 80px 30px 30px 30px;
   min-height: 100vh;
 `;

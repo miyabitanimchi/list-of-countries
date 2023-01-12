@@ -8,8 +8,13 @@ const GlobalStyle = createGlobalStyle`
       box-sizing:border-box;
       font-family: 'Nunito', sans-serif;
   }
+
   #root {
       margin:0 auto;
+  }
+  a {
+    text-decoration: none;
+    color: #3c3c3c;
   }
 `;
 

@@ -143,7 +143,7 @@ const FilterContainer = styled.div`
   width: 300px;
   padding: 25px;
   position: sticky;
-  top: 30px;
+  top: 80px;
   border-radius: 10px;
 `;
 
