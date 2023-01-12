@@ -115,13 +115,14 @@ const FilterBox = () => {
           <Cross className="crossIcon" onClick={onResetSearchText} />
         )}
       </SearchWrap>
-      <select name="" id="" onChange={handleFilterOption}>
+      <select
+        name=""
+        id=""
+        onChange={handleFilterOption}
+        value={selectedFilter}
+      >
         {SORT_OPTIONS.map((sortOption) => (
-          <option
-            key={sortOption}
-            value={sortOption}
-            selected={selectedFilter === sortOption}
-          >
+          <option key={sortOption} value={sortOption}>
             {sortOption}
           </option>
         ))}

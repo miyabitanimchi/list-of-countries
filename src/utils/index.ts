@@ -22,6 +22,5 @@ export const normalizeCountry = (data: any): CountryInfo[] => {
       },
     });
   }
-  console.log(normalizedData);
   return normalizedData;
 };
